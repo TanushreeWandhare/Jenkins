@@ -1,0 +1,15 @@
+pipeline 
+    agent any{
+        stages{
+            stage('PUll') {
+                steps{
+                    git branch: 'main', url: 'https://github.com/TanushreeWandhare/Jenkins.git'
+                }
+            }
+
+            stage('BUILD')
+                steps{
+
+                }
+        }
+    }
