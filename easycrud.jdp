@@ -2,7 +2,7 @@ pipeline
     agent any{
         stages{
             stage('PUll') {
-                steps{
+                steps {
                     git branch: 'main', url: 'https://github.com/TanushreeWandhare/easycrud.git'
                 }
             }
