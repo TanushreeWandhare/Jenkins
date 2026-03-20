@@ -28,6 +28,12 @@ pipeline {
                 }
             }
         }
+         stage('Quality gate'){
+            steps{
+                waitForQualityGate abortPipeline: true, credentialsId: 'sonarqube'
+            }
+         }
+
 
         stage('Deploy') {
             steps {
