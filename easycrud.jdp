@@ -3,7 +3,7 @@ pipeline
         stages{
             stage('PUll') {
                 steps{
-                    git branch: 'main', url: 'https://github.com/TanushreeWandhare/Jenkins.git'
+                    git branch: 'main', url: 'https://github.com/TanushreeWandhare/easycrud.git'
                 }
             }
 
