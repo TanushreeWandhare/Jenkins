@@ -7,19 +7,19 @@ pipeline
                 }
             }
 
-            stage('BUILD'){
+            stage('BUILD') {
                 steps{
                     sh '''cd backend
                     mvn clean package -Dskiptests'''
                     }
                 }
 
-            stage('TEST'){
+            stage('TEST') {
                 steps{
                     echo'Test success'
                 }
             }
-            stage('DEPLOY'){
+            stage('DEPLOY') {
                 steps{
                     echo'Deploy success'
                 }
