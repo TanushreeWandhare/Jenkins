@@ -1,6 +1,5 @@
 pipeline {
-    agent any
-    stages {
+    agent anystages {
 
         stage('Pull') {
             steps {
@@ -19,7 +18,12 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Test success'
+                withSonarQubeEnv(installationName: 'sonar', credentialsId: 'sonarqube') {
+                    sh '''cd backend
+                    mvn sonar:sonar -Dsonar.projectKey='Easycrud'
+                    '''
+
+            }
             }
         }
 
