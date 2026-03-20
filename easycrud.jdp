@@ -1,29 +1,33 @@
-pipeline{ 
-    agent any{
-        stages{
-            stage('PUll') {
-                steps {
-                    git branch: 'main', url: 'https://github.com/TanushreeWandhare/easycrud.git'
-                }
-            }
+pipeline {
+    agent any
 
-            stage('BUILD') {
-                steps{
-                    sh '''cd backend
-                    mvn clean package -Dskiptests'''
-                    }
-                }
+    stages {
 
-            stage('TEST') {
-                steps{
-                    echo'Test success'
-                }
+        stage('Pull') {
+            steps {
+                git branch: 'main', url: 'https://github.com/TanushreeWandhare/easycrud.git'
             }
-            stage('DEPLOY') {
-                steps{
-                    echo'Deploy success'
-                }
-            } 
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                cd backend
+                mvn clean package -DskipTests
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo 'Test success'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploy success'
+            }
         }
     }
 }
