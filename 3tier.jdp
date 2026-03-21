@@ -9,7 +9,7 @@ pipeline{
        stage('PLAN'){
             steps{
                 sh'''
-                cd infra/radison-hms-infra
+                cd eks
                 terraform init
                 terraform plan --var-file=vars/staging.tfvars
                 '''
