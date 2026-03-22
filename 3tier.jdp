@@ -11,7 +11,7 @@ pipeline{
                 sh'''
                 cd eks
                 terraform init
-                terraform plan --var-file=vars/staging.tfvars
+                terraform plan --var-file=variables.tf
                 '''
             }
         }
