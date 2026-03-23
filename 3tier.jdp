@@ -1,11 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage('Clean Workspace') {
-            steps {
-                cleanWs()
-            }
-        }
+      
         stage('PULL'){
             steps{
             git branch: 'main', url: ' https://github.com/TanushreeWandhare/Terraform.git'
