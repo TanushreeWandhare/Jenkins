@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    stages {
+        stage('PULL'){
+            steps{
+                git branch: 'cdec-b48', url: 'https://github.com/TanushreeWandhare/easycrud.git'
+            }
+        }
+        stage ('BUILD'){
+            steps{
+                sh '''
+                    cd backend
+                    mvn clean package -DskipTests
+                '''
+            }
+        }
+        stage ('DOCKER-BUILD'){
+            steps{
+                sh '''cd backend
+                    docker build -t tanushreew/backend:latest
+                    docker push tanushreew/backend:latest
+                    docker rmi tanushreew/backend:latest
+                    '''
+            }
+        }
+        stage ('DEPLOY'){
+            steps{
+                sh '''cd backend
+                    kubectl apply -f backend/yaml/
+                    '''
+            }
+        }
+    }
+    post {
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
+        }
+    }
+}
