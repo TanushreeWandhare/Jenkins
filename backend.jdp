@@ -17,7 +17,7 @@ pipeline {
         stage ('DOCKER-BUILD'){
             steps{
                 sh '''cd backend
-                    docker build -t tanushreew/backend:latest
+                    docker build -t tanushreew/backend:latest .
                     docker push tanushreew/backend:latest
                     docker rmi tanushreew/backend:latest
                     '''
