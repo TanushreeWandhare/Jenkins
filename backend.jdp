@@ -16,6 +16,11 @@ pipeline {
         }
         stage ('DOCKER-BUILD'){
             steps{
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'tanushreew', passwordVariable: 'Tanushree@07')]) {
+                sh '''
+                echo $PASS | docker login -u $USER --password-stdin
+                '''
+}
                 sh '''cd backend
                     docker build -t tanushreew/backend:latest .
                     docker push tanushreew/backend:latest
@@ -26,7 +31,7 @@ pipeline {
         stage ('DEPLOY'){
             steps{
                 sh '''cd backend
-                    kubectl apply -f backend/yaml/
+                    kubectl apply -f yaml/
                     '''
             }
         }
