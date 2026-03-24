@@ -14,6 +14,7 @@ pipeline {
                 '''
             }
         }
+        /*
         stage ('DOCKER-BUILD'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'tanushreew', passwordVariable: 'Tanushree@07')]) {
@@ -28,6 +29,7 @@ pipeline {
                     '''
             }
         }
+        */
         stage ('DEPLOY'){
             steps{
                 sh '''cd backend
